@@ -1,6 +1,11 @@
 class PagesController < ApplicationController
   before_action :set_page, :only => [:show, :edit, :update, :destroy]
 
+  # GET /pages
+  def index
+    @pages = all_pages
+  end
+
   # GET /pages/1
   def show
   end
@@ -9,7 +14,7 @@ class PagesController < ApplicationController
   def new
   end
 
-  # PUT /pages/new
+  # POST /pages
   def create
     new_page(params[:title], params[:page])
     redirect_to "/pages/#{params[:title]}"
@@ -25,8 +30,10 @@ class PagesController < ApplicationController
     redirect_to "/pages/#{@title}"
   end
 
-  # DELETE /pages/1
+  # POST /pages/1/delete
   def destroy
+    delete_page(@title)
+    redirect_to "/pages"
   end
 
   private

@@ -1,12 +1,19 @@
 <h1>Editing page</h1>
 <div class="large-6 large-centered columns">
-	<%= form_tag("/pages/" + @title, method: "patch") do %>
-	  <fieldset>
-	    <legend><%= @title %></legend>
-	    <label>Edit:
-	      <%= text_area_tag("page", @contents, size: "24x6") %>
-	    </label>
-	    <%= submit_tag("Submit", {:class => "button"}) %>
-	  </fieldset>
-	<% end %>
+  <%= form_tag("/pages/" + @title, method: "patch") do %>
+    <fieldset>
+      <legend><%= @title %></legend>
+      <label>Edit: <small>Use markdown</small>
+        <%= text_area_tag("page", @contents, size: "24x6") %>
+      </label>
+      <div class="row">
+        <div class="large-6 columns">
+          <%= submit_tag("Submit", {:class => "button"}) %>
+        </div>
+        <div class="large-4 columns">
+          <%= link_to "Delete", "/pages/#{@title}", method: :delete, data: { confirm: 'Are you sure?' }, :class => "button alert" %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
 </div>

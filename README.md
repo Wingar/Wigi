@@ -13,8 +13,9 @@ Please for the love of all that is good never actually use this, this is a fun b
 
 Current State
 -------------
-Currently; viewing, creating and editing pages works. 
+Currently; viewing, creating, editing and deleting pages works. 
 
 TODO
 ----
-History, page deletion, file name validation/escaping
+Page History, file name validation/escaping, Hell of a lot of cleanup (This got messy fast... oops)
+Move over stuff from the git controller to model stuff

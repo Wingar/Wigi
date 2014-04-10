@@ -1,13 +1,7 @@
 class BaseGitController < ActionController::Base
 
-  before_action :repo_initialize
-
-  def repo_initialize
-    @repo = Rugged::Repository.new(Rails.root.to_s + APP_CONFIG[Rails.env]["PAGES_PATH"])
-  end
-
   def repo
-    @repo
+    @repo ||= Rugged::Repository.new(Rails.root.to_s + APP_CONFIG[Rails.env]["PAGES_PATH"])
   end
 
   def all_pages
@@ -83,6 +77,32 @@ class BaseGitController < ActionController::Base
     options[:author] = { :email => "wingar@team-metro.net", :name => "Admin", :time => Time.now }
     options[:committer] = options[:author]
     options[:message] ||= "Updated #{file}"
+    options[:parents] = [repo.head.target]
+    options[:tree] = tree_oid
+    options[:update_ref] = 'HEAD'
+
+    Rugged::Commit.create(repo, options)
+  end
+
+  def delete_page(page)
+    pages = all_pages
+    file = pages["pages"][page]["file"]
+    pages["pages"].delete(page)
+
+
+    index = repo.index
+
+    pages_oid = repo.write(pages.to_yaml, :blob)
+    index = stage_file(index, "pages.yml", pages_oid)
+    
+    index.remove(file)
+    tree_oid = index.write_tree repo
+    index.write
+
+    options = {}
+    options[:author] = { :email => "wingar@team-metro.net", :name => "Admin", :time => Time.now }
+    options[:committer] = options[:author]
+    options[:message] ||= "Deleted #{file}"
     options[:parents] = [repo.head.target]
     options[:tree] = tree_oid
     options[:update_ref] = 'HEAD'
