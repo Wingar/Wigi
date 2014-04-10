@@ -17,7 +17,8 @@ class PagesController < ApplicationController
   # POST /pages
   def create
     new_page(CGI.escapeHTML(params[:title]), CGI.escapeHTML(params[:page]))
-    redirect_to "/pages/#{params[:title]}"
+    title = params[:title].gsub(/[^0-9A-Za-z(\s)]/, '').tr(' ', '_').downcase
+    redirect_to "/pages/#{title}"
   end
 
   # GET /pages/1/edit
