@@ -1,4 +1,4 @@
-class BaseGitControllerController < ActionController::Base
+class BaseGitController < ActionController::Base
 
   around_action :repo_initialize
 
@@ -17,13 +17,7 @@ class BaseGitControllerController < ActionController::Base
   end
 
   def find_file(file, commit = repo.lookup(repo.head.target)) # I love how horrible this is
-    oid = ""
-    commit.tree.each do |object|
-      if object[:name] == file
-        oid = object[:oid]
-        break
-      end
-    end
+    oid = commit.tree.find { |object| object[:name] == file }[:oid]
 
     repo.read(oid).data
   end
