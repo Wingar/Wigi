@@ -13,4 +13,8 @@ Please for the love of all that is good never actually use this, this is a fun b
 
 Current State
 -------------
-Right now you can load pages. That's about it.
+Currently; viewing, creating and editing pages works. 
+
+TODO
+----
+History, page deletion, file name validation/escaping

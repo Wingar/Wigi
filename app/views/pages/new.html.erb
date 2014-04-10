@@ -1,5 +1,20 @@
-<h1>New page</h1>
+<div class="large-6 large-centered columns">
+  <%= form_tag("/pages/new", method: "post") do %>
+    <fieldset>
+      <legend>New Page</legend>
+      <div class="row collapse">
+        <div class="large-2 columns">
+          <span class="prefix">Title</span>
+        </div>
+        <div class="large-10 columns">
+          <%= text_field_tag("title") %>
+        </div>
+      </div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', pages_path %>
+      <label>Edit:
+        <%= text_area_tag("page") %>
+      </label>
+      <%= submit_tag("Submit", {:class => "button"}) %>
+    </fieldset>
+  <% end %>
+</div>

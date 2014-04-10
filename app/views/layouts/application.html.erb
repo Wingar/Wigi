@@ -11,8 +11,9 @@
   </head>
 
   <body>
-
-    <%= yield %>
+    <div class="row">
+      <%= yield %>
+    </div>
     <% javascript_include_tag "application" # No JS for the time being %>
   </body>
 </html>

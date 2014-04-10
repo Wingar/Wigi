@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :pages
+  get '/pages/new', to: 'pages#new'
+  post '/pages/new', to: 'pages#create'
+
+  get '/pages/:id', to: 'pages#show'
+  patch '/pages/:id', to: 'pages#update'
+  get '/pages/:id/edit', to: 'pages#edit'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
