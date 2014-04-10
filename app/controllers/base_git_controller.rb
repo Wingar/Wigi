@@ -1,7 +1,11 @@
 class BaseGitController < ActionController::Base
 
+  def repo_dir
+    Rails.root.to_s + APP_CONFIG[Rails.env]["PAGES_PATH"]
+  end
+
   def repo
-    @repo ||= Rugged::Repository.new(Rails.root.to_s + APP_CONFIG[Rails.env]["PAGES_PATH"])
+    @repo ||= Rugged::Repository.new(repo_dir)
   end
 
   def all_pages
@@ -95,7 +99,7 @@ class BaseGitController < ActionController::Base
 
     pages_oid = repo.write(pages.to_yaml, :blob)
     index = stage_file(index, "pages.yml", pages_oid)
-    
+
     index.remove(file)
     tree_oid = index.write_tree repo
     index.write
