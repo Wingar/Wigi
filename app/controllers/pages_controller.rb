@@ -27,12 +27,12 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1
   def update
     update_file(@title, CGI.escapeHTML(params[:page]))
-    redirect_to "/pages/#{@title}"
+    redirect_to "/pages/#{@url}"
   end
 
   # POST /pages/1/delete
   def destroy
-    delete_page(@title)
+    delete_page(@url)
     redirect_to "/pages"
   end
 
@@ -40,8 +40,9 @@ class PagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_page
       page = find_page(params[:id])
-      @title = page[0]
-      @contents = find_file(page[1])
+      @url = page[0]
+      @title = page[1]
+      @contents = find_file(page[2])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

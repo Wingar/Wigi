@@ -20,7 +20,7 @@ class BaseGitController < ActionController::Base
     pages = all_pages
     pages["pages"].each do |entry|
       if entry[0] == page
-        object = [entry[0], entry[1]["file"]]
+        object = [entry[0], entry[1]["title"], entry[1]["file"]]
         break
       end
     end
@@ -42,13 +42,14 @@ class BaseGitController < ActionController::Base
   def new_page(title, contents) # This is too fuckin messy
     index = repo.index
     pages = all_pages
-    pages["pages"][title] = {"file" => title}
+    filtered_title = title.gsub(/[^0-9A-Za-z(\s)]/, '').tr(' ', '_').downcase
+    pages["pages"][filtered_title] = {"title" => title, "file" => filtered_title }
 
     pages_oid = repo.write(pages.to_yaml, :blob)
     index = stage_file(index, "pages.yml", pages_oid)
 
     new_page_oid = repo.write(contents, :blob)
-    index = stage_file(index, title, new_page_oid, true)
+    index = stage_file(index, filtered_title, new_page_oid, true)
 
     tree_oid = index.write_tree repo
     index.write

@@ -2,7 +2,7 @@
 
 <% @pages["pages"].each do |page| %>
   <fieldset class="large-5 large-centered columns">
-    <legend><%= link_to page[0], page[0] %></legend>
+    <legend><%= link_to page[1]["title"], "/pages/#{page[0]}" %></legend>
     <div class="row">
       <div class="large-4 columns">
         <%= link_to "Show", "/pages/#{page[0]}", :class => "button" %>

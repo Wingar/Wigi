@@ -17,5 +17,5 @@ Currently; viewing, creating, editing and deleting pages works.
 
 TODO
 ----
-Page History, file name validation/escaping, Hell of a lot of cleanup (This got messy fast... oops)
+Page History, file name validation, Hell of a lot of cleanup (This got messy fast... oops)
 Move over stuff from the git controller to model stuff

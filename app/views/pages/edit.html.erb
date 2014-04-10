@@ -11,7 +11,7 @@
           <%= submit_tag("Submit", {:class => "button"}) %>
         </div>
         <div class="large-4 columns">
-          <%= link_to "Delete", "/pages/#{@title}", method: :delete, data: { confirm: 'Are you sure?' }, :class => "button alert" %>
+          <%= link_to "Delete", "/pages/#{@url}", method: :delete, data: { confirm: 'Are you sure?' }, :class => "button alert" %>
         </div>
       </div>
     </fieldset>
