@@ -1,6 +1,6 @@
 <h1>Editing page</h1>
 <div class="large-6 large-centered columns">
-  <%= form_tag("/pages/" + @title, method: "patch") do %>
+  <%= form_tag("/pages/" + @url, method: "patch") do %>
     <fieldset>
       <legend><%= @title %></legend>
       <label>Edit: <small>Use markdown</small>
