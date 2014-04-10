@@ -27,7 +27,7 @@ class PagesController < ApplicationController
 
   # PATCH/PUT /pages/1
   def update
-    update_file(@title, CGI.escapeHTML(params[:page]))
+    update_file(@url, CGI.escapeHTML(params[:page]))
     redirect_to "/pages/#{@url}"
   end
 
