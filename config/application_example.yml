@@ -1,0 +1,9 @@
+development:
+    SECRET_TOKEN: superSEKRITkeyGOEShere
+    PAGES_PATH: /gits/pages.git
+test:
+    SECRET_TOKEN: superSEKRITkeyGOEShere
+    PAGES_PATH: /gits/pages.git
+production:
+    SECRET_TOKEN: superSEKRITkeyGOEShere
+    PAGES_PATH: /gits/pages.git
