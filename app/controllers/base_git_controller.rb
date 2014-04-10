@@ -1,10 +1,9 @@
 class BaseGitController < ActionController::Base
 
-  around_action :repo_initialize
+  before_action :repo_initialize
 
   def repo_initialize
     @repo = Rugged::Repository.new(Rails.root.to_s + APP_CONFIG[Rails.env]["PAGES_PATH"])
-    yield
   end
 
   def repo
