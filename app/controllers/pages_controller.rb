@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
   # POST /pages
   def create
-    new_page(CGI.EscapeHTML(params[:title]), CGI.EscapeHTML(params[:page]))
+    new_page(CGI.escapeHTML(params[:title]), CGI.escapeHTML(params[:page]))
     redirect_to "/pages/#{params[:title]}"
   end
 
@@ -26,7 +26,7 @@ class PagesController < ApplicationController
 
   # PATCH/PUT /pages/1
   def update
-    update_file(@title, CGI.EscapeHTML(params[:page]))
+    update_file(@title, CGI.escapeHTML(params[:page]))
     redirect_to "/pages/#{@title}"
   end
 
