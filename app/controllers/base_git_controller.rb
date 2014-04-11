@@ -59,7 +59,7 @@ class BaseGitController < ActionController::Base
     index.write
 
     options = {}
-    options[:author] = { :email => "wingar@team-metro.net", :name => "Admin", :time => Time.now }
+    options[:author] = { :email => "wingar@team-metro.net", :name => "#{request.remote_ip}/#{request.user_agent}", :time => Time.now }
     options[:committer] = options[:author]
     options[:message] ||= "Added page #{title}"
     options[:parents] = [repo.head.target]
@@ -79,7 +79,7 @@ class BaseGitController < ActionController::Base
     index.write
 
     options = {}
-    options[:author] = { :email => "wingar@team-metro.net", :name => "Admin", :time => Time.now }
+    options[:author] = { :email => "wingar@team-metro.net", :name => "#{request.remote_ip}/#{request.user_agent}", :time => Time.now }
     options[:committer] = options[:author]
     options[:message] ||= "Updated #{file}"
     options[:parents] = [repo.head.target]
@@ -105,7 +105,7 @@ class BaseGitController < ActionController::Base
     index.write
 
     options = {}
-    options[:author] = { :email => "wingar@team-metro.net", :name => "Admin", :time => Time.now }
+    options[:author] = { :email => "wingar@team-metro.net", :name => "#{request.remote_ip}/#{request.user_agent}", :time => Time.now }
     options[:committer] = options[:author]
     options[:message] ||= "Deleted #{file}"
     options[:parents] = [repo.head.target]
