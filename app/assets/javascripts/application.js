@@ -127,7 +127,7 @@ $(function () {
     }
     // Call everything we've defined
     if (!doesSupportEmoji()) {
-      emojiReplace(getLegitTextNodes(document.body));
+      emojiReplace(getLegitTextNodes(document.querySelector("#md_rendered")));
     }
   }(this));
 });
