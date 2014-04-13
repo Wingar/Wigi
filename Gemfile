@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # Rdiscount for markdown.
 gem 'rdiscount'
+# Emoji for emoji parsing
+gem 'rumoji'
 
 # Rugged for git access.
 gem 'rugged'
