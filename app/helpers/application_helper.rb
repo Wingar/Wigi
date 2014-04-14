@@ -1,5 +1,6 @@
 module ApplicationHelper
   def markdown(input)
-    RDiscount.new(input).to_html.html_safe
+    emojified = Rumoji.decode(input)
+    RDiscount.new(emojified).to_html.html_safe
   end
 end
