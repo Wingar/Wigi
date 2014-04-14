@@ -134,6 +134,6 @@ $(function () {
 });
 
 $(document).ready(function () {
-  var el = document.querySelector('#md_rendered');
+  var el = document.body;
   replaceEmojiWithImages(el);
 });
